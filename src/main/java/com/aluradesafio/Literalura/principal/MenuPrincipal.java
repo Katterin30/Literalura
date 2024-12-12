@@ -1,10 +1,13 @@
 package com.aluradesafio.Literalura.principal;
 
 import com.aluradesafio.Literalura.model.ApiResponse;
+import com.aluradesafio.Literalura.model.Autor;
+import com.aluradesafio.Literalura.model.DatosLibro;
 import com.aluradesafio.Literalura.service.ConsumoAPI;
 import com.aluradesafio.Literalura.service.ConvierteDatos;
 
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class MenuPrincipal {
     private final ConsumoAPI consumoAPI = new ConsumoAPI();
@@ -61,18 +64,20 @@ public class MenuPrincipal {
         String titulo = scanner.nextLine();
         apiResponse.libros().stream()
                 .filter(libro -> libro.titulo().toLowerCase().contains(titulo.toLowerCase()))
-                .forEach(System.out::println);
+                .forEach(item -> {
+                    System.out.println("Titulo:" + item.titulo()+"\n Autor: "+item.autores().stream().map(Autor::nombre).collect(Collectors.joining("; ")) +"\n Idiomas: "+ item.idiomas().stream().collect(Collectors.joining(";")) + "\n Numero de Descargas: " + item.cantidadDescargas());
+                });
     }
 
     private void listarLibros() {
         System.out.println("=== Libros Registrados ===");
-        apiResponse.libros().forEach(System.out::println);
+        apiResponse.libros().forEach(item ->{System.out.println( item.titulo());});
     }
 
     private void listarAutores() {
         System.out.println("=== Autores Registrados ===");
         apiResponse.libros().stream()
-                .flatMap(libro -> libro.autores().stream())
+                .flatMap(libro -> libro.autores().stream().map(Autor::nombre))
                 .distinct()
                 .forEach(System.out::println);
     }
@@ -82,14 +87,19 @@ public class MenuPrincipal {
         int anio = scanner.nextInt();
         apiResponse.libros().stream()
                 .flatMap(libro -> libro.autores().stream())
-                .filter(autor -> autor.anioNacimiento() != null && autor.anioNacimiento() <= anio &&
-                        (autor.anioFallecimiento() == null || autor.anioFallecimiento() > anio))
+                .filter(autor -> autor.anioNacimiento() <= anio && autor.anioFallecimiento() > anio)
+                /*.filter(autor -> autor.anioNacimiento() != null && autor.anioNacimiento() <= anio &&
+                        (autor.anioFallecimiento() == null || autor.anioFallecimiento() > anio))*/
                 .distinct()
                 .forEach(System.out::println);
     }
 
     private void listarLibrosPorIdiomas() {
         System.out.println("Esta funcionalidad aún está pendiente de implementación.");
-        // Puedes agregar esta funcionalidad cuando los datos de idiomas estén disponibles.
+        // Agregar esta funcionalidad cuando los datos de idiomas estén disponibles.
+    }
+
+    private String imprimirLibro(DatosLibro libro) {
+        return null;
     }
 }
