@@ -18,7 +18,5 @@ public interface RepositorioAutor extends JpaRepository<Autor2, Long> {
            "GROUP BY a.nombre, a.anioNacimiento, a.anioFallecimiento")
     List<Object[]> findByAnioNacimientoLessThanEqualAndAnioFallecimientoGreaterThanEqualGrouped(
             int anio1, int anio2);
-    // Métodos personalizados opcionales
-    //List<Autor2> findByNombreContainingIgnoreCase(String nombre);
     List<Autor2> findByAnioNacimientoLessThanEqualAndAnioFallecimientoIsNull(int anio);
 }

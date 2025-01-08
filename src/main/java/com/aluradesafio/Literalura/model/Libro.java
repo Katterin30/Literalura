@@ -14,7 +14,6 @@ public class Libro {
 
     private String titulo;
     private int cantidadDescargas;
-    //private List <Language>idioma;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(

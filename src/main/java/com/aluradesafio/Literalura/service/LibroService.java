@@ -26,18 +26,6 @@ public class LibroService {
     public long contarLibrosPorIdioma(String idioma){
         return repositorioLibro.countByIdiomasNombre(idioma);
     }
-    //@Autowired
-    //RepositorioAutor repositorioAutor;
-
-    //public Libro crearLibroConAutores (Libro libro) {
-    //libro.getAutores().forEach(autor2 -> {
-           // if (autor2.getId() == null){
-              //  repositorioAutor.save(autor2);
-           // }
-       // });
-       // return repositorioLibro.save(libro);
-        //repositorioLibro.saveAndFlush(libro);
- //   }
      public List<Libro> listarLibros(){
         return repositorioLibro.findAll();
     }

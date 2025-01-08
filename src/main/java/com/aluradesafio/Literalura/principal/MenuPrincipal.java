@@ -112,17 +112,6 @@ public class MenuPrincipal {
                         autor.getNombre(), autor.getAnioNacimiento(), autor.getAnioFallecimiento());
             });
         }
-            //@org.jetbrains.annotations.NotNull Scanner scanner) {
-       // System.out.print("Ingrese el año a consultar: ");
-        //int anio = scanner.nextInt();
-        //apiResponse.libros().stream()
-                //.flatMap(libro -> libro.autores().stream())
-                //.filter(autor -> (autor.anioNacimiento() != null && anio >= autor.anioNacimiento()  && anio <= autor.anioFallecimiento()))
-                //.distinct()
-                //.forEach(autor -> {
-                  //  System.out.printf("Nombre: %s, Año de nacimiento: %d, Año de fallecimiento: %s%n",
-                    //        autor.nombre(), autor.anioNacimiento(), autor.anioFallecimiento());
-                //});
     }
 
     private void listarLibrosPorIdiomas() {
@@ -132,10 +121,8 @@ public class MenuPrincipal {
                 .collect(Collectors.groupingBy(idioma -> idioma, Collectors.counting()));
         librosPorIdiomas.forEach((idioma, cantidad) ->
                         System.out.printf("Idioma: %s - Libros: %d%n", idioma, cantidad));
-
-        //apiResponse.libros().forEach(item ->{System.out.println( item.titulo());});
-        // Agregar esta funcionalidad cuando los datos de idiomas estén disponibles.
     }
+    
     private void mostrarEstadisticasPorIdioma(Scanner scanner){
         System.out.println("Seleccione el idioma para ver estadísticas:");
         Map<String, Long> librosPorIdiomas = apiResponse.libros().stream()
