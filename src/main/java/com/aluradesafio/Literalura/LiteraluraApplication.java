@@ -35,9 +35,23 @@ public class LiteraluraApplication implements CommandLineRunner {
         String url= "https://gutendex.com/books/";
         String json= consumoAPI.obtenerDatos(url);
         ApiResponse apiResponse =convierteDatos.obtenerDatos(json,ApiResponse.class);
+
         libroService.listarLibros().forEach(System.out::println);
         autorService.listarAutores().forEach(System.out::println);
         System.out.println(libroService.contarLibrosPorIdioma("en"));
+
+        // 🤝 Contribuciones
+        // ¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar **Literalura**, no dudes en abrir un issue o enviar un pull request. ¡Nos encanta colaborar!
+
+        // 📜 Licencia
+        // Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
+
+        // 🎉 Agradecimientos
+        // Gracias por usar **Literalura**. ¡Esperamos que disfrutes trabajando en este proyecto tanto como nosotros disfrutamos creándolo!
+
+        // ---
+
+        // ¡Feliz codificación! 🚀
         var menuPrincipal = new MenuPrincipal(autorService);
         menuPrincipal.cargarDatos();
         menuPrincipal.mostrarMenu();
